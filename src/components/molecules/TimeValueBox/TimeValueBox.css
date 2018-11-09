@@ -1,0 +1,63 @@
+.time-value-box {
+  display: inline-block;
+  width: 23.5%;
+  text-align: right;
+}
+
+.time-value-box-days {
+  margin-right: 1%;
+}
+
+.time-value-box-hours {
+  margin-right: 1%;
+}
+
+.time-value-box-hours-countdown {
+  margin: 0 1%;
+}
+
+.time-value-box-minutes {
+  margin: 0 1%;
+}
+
+.time-value-box-seconds {
+  margin: 0 1%;
+}
+
+@media screen and (max-width: 600px) {
+  .time-value-box {
+    width: 25%;
+  }
+
+  .time-value-box-days {
+    margin: 0;
+    border-right: 1px solid #06f;
+    box-sizing: border-box;
+  }
+
+  .time-value-box-hours {
+    margin: 0;
+    border-right: 1px solid #06f;
+    box-sizing: border-box;
+  }
+
+  .time-value-box-hours-countdown {
+    margin: 0;
+    border-right: 1px solid #06f;
+    box-sizing: border-box;
+  }
+
+  .time-value-box-minutes {
+    margin: 0;
+    border-right: 1px solid #06f;
+    box-sizing: border-box;
+  }
+
+  .time-value-box-seconds {
+    margin: 0;
+    border-right: 1px solid #06f;
+    box-sizing: border-box;
+  }
+
+
+}

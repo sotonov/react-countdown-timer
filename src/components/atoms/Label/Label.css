@@ -1,0 +1,51 @@
+.label {
+  display: block;
+  font-size: 1em;
+}
+
+.label-countdown, .label-timer {
+  font-size: 1em;
+  text-align: left;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.label-countdown-upper {
+  width: 90%;
+  margin-left: 5%;
+}
+
+.label-timer-upper {
+  width: 80%;
+  margin-left: 10%;
+}
+
+.label-countdown-upper-counting {
+  width: 80%;
+  margin-left: 10%;
+}
+
+.label-countdown-lower, .label-timer-lower {
+  width: 80%;
+  margin-left: 10%;
+  cursor: pointer;
+  visibility: hidden;
+}
+
+.label-countdown-lower-counting, .label-timer-lower-counting {
+  visibility: visible;
+}
+
+.label-unit {
+  width: auto;
+  color: white;
+  text-align: right;
+}
+
+@media screen and (max-width: 500px) {
+  .label-timer-upper, .label-timer-upper-counting, .label-timer-lower, .label-timer-lower-counting,
+  .label-countdown-upper, .label-countdown-upper-counting, .label-countdown-lower, .label-countdown-lower-counting {
+    width: 90%;
+    margin-left: 5%;
+  }
+}

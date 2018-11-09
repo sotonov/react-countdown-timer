@@ -1,28 +1,30 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
+
+import Layout from './hoc/Layout/Layout';
+import Countdown from './containers/Countdown/Countdown';
+import Timer from './containers/Timer/Timer';
+import Home from './components/pages/Home/Home';
+import classes from './App.css';
 
 class App extends Component {
   render() {
+    let routes = (
+      <Switch>
+        <Route path='/' exact component={Home} />
+        <Route path='/countdown' component={Countdown} />
+        <Route path='/timer' component={Timer} />
+        <Redirect to='/' />
+      </Switch>
+    )
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div className={classes.app}>
+        <Layout>
+          {routes}
+        </Layout>
       </div>
     );
   }
 }
 
-export default App;
+export default withRouter(App);

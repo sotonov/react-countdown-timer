@@ -1,0 +1,17 @@
+.date-picker {
+  margin-right: 5px;
+}
+
+.date-picker input {
+  width: 240px;
+}
+
+@media screen and (max-width: 600px) {
+  .date-picker {
+    margin: 10px auto;
+  }
+
+  .date-picker input {
+    width: 100%;
+  }
+}

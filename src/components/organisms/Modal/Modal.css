@@ -1,0 +1,24 @@
+.modal {
+    position: fixed;
+    z-index: 500;
+    text-align: center;
+    background-color: white;
+    width: 600px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 1px black;
+    padding: 10px 15px;
+    margin: auto;
+    top: 30%;
+    box-sizing: border-box;
+    transition: all 0.3s ease-out;
+    cursor: pointer;
+}
+
+
+
+@media screen and (max-width: 500px) {
+  .modal {
+    width: 90%;
+    margin-left: 5%;
+  }
+}

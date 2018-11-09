@@ -1,0 +1,13 @@
+.input, .input-hours, .input-minutes, .input-seconds {
+  display: block;
+  width: 100%;
+  height: 80px;
+  color: white;
+  background-color: #046485;
+  text-align: center;
+  font-size: 4em;
+  font-family: inherit;
+  border-width: 0px;
+  border-radius: 3px;
+  box-sizing: border-box;
+}

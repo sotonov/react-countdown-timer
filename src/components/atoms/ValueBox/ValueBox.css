@@ -1,0 +1,10 @@
+.value-box {
+  display: block;
+  height: 80px;
+  color: white;
+  background-color: #046485;
+  font-size: 4em;
+  text-align: center;
+  border-radius: 3px;
+  box-sizing: border-box;
+}

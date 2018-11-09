@@ -1,0 +1,13 @@
+.output {
+  display: flex;
+  align-items: flex-start;
+  width: 80%;
+  margin-left: 10%;
+}
+
+@media screen and (max-width: 500px) {
+  .output {
+    width: 90%;
+    margin: auto;
+  }
+}

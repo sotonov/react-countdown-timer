@@ -1,0 +1,18 @@
+.time-picker {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.time-picker input {
+  width: 180px;
+}
+
+@media screen and (max-width: 600px) {
+  .time-picker {
+    margin: 10px auto;
+  }
+
+  .time-picker input {
+    width: 100%;
+  }
+}
