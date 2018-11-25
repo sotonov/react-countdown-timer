@@ -4,13 +4,14 @@ import classNames from 'classnames/bind';
 import styles from './Label.css';
 
 type Props = {
-  content: string,
+  content: ?string,
   countdown?: boolean,
   timer?: boolean,
   upper?: boolean,
   lower?: boolean,
   counting?: boolean,
   unit?: boolean,
+  handleClick?: ?Function
 }
 
 let cx = classNames.bind(styles);

@@ -6,6 +6,7 @@ import styles from './Input.css';
 type Props = {
   unit: string,
   value?: string | number,
+  handleChange: ?Function
 }
 
 let cx = classNames.bind(styles);

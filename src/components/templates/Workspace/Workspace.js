@@ -15,9 +15,18 @@ type Props = {
   minutes: number,
   seconds: number,
   isRunning?: boolean,
-  targetTime?: Array,
+  targetTime?: Array<(string | number)>,
   showTimer?: boolean,
   isStarted?: boolean,
+  handleChange?: Function,
+  handleToggleClick?: Function,
+  handleStopClick?: Function,
+  handleHoursChange?: Function,
+  handleMinutesChange?: Function,
+  handleSecondsChange?: Function,
+  handleStartClick?: Function,
+  handleSubmit?: Function,
+  handlePauseContinueClick?: Function,
   children?: any
 }
 
@@ -51,16 +60,20 @@ const Workspace = (
       if (!isRunning) {
         upperLabel = 'Select Date and Time';
       } else {
-        const target = (new Date(targetDate)).toLocaleString('sr-sr').slice(0,-3);
-        upperLabel = 'Time until ' + target + '.';
+        if (targetDate !== undefined) {
+          const target = (new Date(targetDate)).toLocaleString('sr-sr').slice(0,-3);
+          upperLabel = 'Time until ' + target + '.';
+        }
         lowerLabel = 'Select another date?';
       }
     } else {
       if (!showTimer) {
         upperLabel = 'Select Time Interval';
       } else {
-        upperLabel = 'Timer Interval: ' + targetTime[0] + ' h ' + targetTime[1]
-        + ' min ' + targetTime[2] + ' s';
+        if (targetTime) {
+          upperLabel = 'Timer Interval: ' + targetTime[0] + ' h ' + targetTime[1]
+          + ' min ' + targetTime[2] + ' s';
+        }
         lowerLabel = 'Choose another time interval?';
       }
     }

@@ -18,6 +18,7 @@ type Props = {
   seconds: number,
   time?: number;
   isStarted?: boolean,
+  handleClick?: ?Function
 }
 
 const Output = (
@@ -28,31 +29,34 @@ const Output = (
   });
 
   let buttonContent = isStarted ? 'Pause' : 'Start';
-  let output;
+  let output = <div></div>;
   if (countdown) {
-    output = (
-      <div className={className}>
-        <TimeValueBox countdown value={leading0(days)} unit='days' />
-        <TimeValueBox countdown value={leading0(hours)} unit='hours' />
-        <TimeValueBox countdown value={leading0(minutes)} unit='minutes' />
-        <TimeValueBox countdown value={leading0(seconds)} unit='seconds'/>
-      </div>
-
-    )
+    if (days !== undefined) {
+      output = (
+        <div className={className}>
+          <TimeValueBox countdown value={leading0(days)} unit='days' />
+          <TimeValueBox countdown value={leading0(hours)} unit='hours' />
+          <TimeValueBox countdown value={leading0(minutes)} unit='minutes' />
+          <TimeValueBox countdown value={leading0(seconds)} unit='seconds'/>
+        </div>
+      )
+    }
   } else {
-    output = (
-      <div className={className}>
-        <TimeValueBox timer value={leading0(hours)} unit='hours' />
-        <TimeValueBox timer value={leading0(minutes)} unit='minutes' />
-        <TimeValueBox timer value={leading0(seconds)} unit='seconds' />
-        <Button
-          hide={!~time}
-          countdown={countdown}
-          timer={timer}
-          content={buttonContent}
-          handleClick={handleClick} />
-      </div>
-    )
+    if (time !== undefined) {
+      output = (
+        <div className={className}>
+          <TimeValueBox timer value={leading0(hours)} unit='hours' />
+          <TimeValueBox timer value={leading0(minutes)} unit='minutes' />
+          <TimeValueBox timer value={leading0(seconds)} unit='seconds' />
+          <Button
+            hide={!~time}
+            countdown={countdown}
+            timer={timer}
+            content={buttonContent}
+            handleClick={handleClick} />
+        </div>
+      )
+    }
   }
 
   return (

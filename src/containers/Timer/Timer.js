@@ -1,3 +1,5 @@
+//@flow
+
 import * as React from 'react';
 
 import Aux from '../../hoc/Aux/Aux';
@@ -7,8 +9,12 @@ import Output from '../../components/organisms/Output/Output';
 import Modal from '../../components/organisms/Modal/Modal';
 import ModalDivider from '../../components/molecules/ModalDivider/ModalDivider';
 
+type Props = {
+  history: Object
+}
+
 type State = {
-  targetTime: object<Array>,
+  targetTime: Array<(string | number)>,
   time: number,
   hours: number,
   minutes: number,
@@ -28,13 +34,15 @@ class Timer extends React.Component<Props, State> {
     isStarted: false,
   }
 
-  handleStartClick = (e) => {
-    e.preventDefault();
-    const [ hours, minutes, seconds ] = [ this.state.hours, this.state.minutes, this.state.seconds ];
-    let isValid = true;
+  isValid = (): boolean => {
     const pattern = /^[0-5]?[0-9]$/;
-    isValid = pattern.test(minutes) && pattern.test(this.state.seconds) && isValid;
-    if (isValid) {
+    return pattern.test(String(this.state.minutes)) && pattern.test(String(this.state.seconds));
+  }
+
+  handleStartClick = (event: SyntheticEvent<HTMLButtonElement>): void => {
+    event.preventDefault();
+    const [ hours, minutes, seconds ] = [ this.state.hours, this.state.minutes, this.state.seconds ];
+    if (this.isValid()) {
       const time = hours * 60 * 60 + minutes * 60 + seconds ;
       this.setState({ time, showTimer: true, isStarted: true },
         this.startTimer);
@@ -42,7 +50,7 @@ class Timer extends React.Component<Props, State> {
     }
   }
 
-  startTimer = () => {
+  startTimer = (): void => {
     if (this.state.time >= 0 && this.state.isStarted) {
       this.getTime(this.state.time);
     }
@@ -55,7 +63,7 @@ class Timer extends React.Component<Props, State> {
     }, 1000);
   }
 
-  getTime = (time) => {
+  getTime = (time: number): void => {
     const hours = Math.floor(time / (60 * 60));
     const minutes = Math.floor(time / 60) % 60;
     const seconds = time % 60 ;
@@ -63,8 +71,8 @@ class Timer extends React.Component<Props, State> {
     this.setState({ time, hours, minutes, seconds });
   }
 
-  handlePauseContinueClick = (e) => {
-    e.preventDefault();
+  handlePauseContinueClick = (event: SyntheticMouseEvent<HTMLButtonElement>): void => {
+    event.preventDefault();
     let hours, minutes, seconds;
     if (this.state.isStarted) {
       this.setState(prevState => {
@@ -79,7 +87,7 @@ class Timer extends React.Component<Props, State> {
     }
   }
 
-  continueTimer = () => {
+  continueTimer = (): void => {
     if (this.state.time >= 0 && this.state.isStarted) {
       this.getTime(this.state.time);
     }
@@ -92,29 +100,29 @@ class Timer extends React.Component<Props, State> {
     }, 1000);
   }
 
-  handleHoursChange = (e) => {
-    e.preventDefault();
+  handleHoursChange = (event: SyntheticInputEvent<HTMLInputElement> & { currentTarget: HTMLInputElement }): void => {
+    event.preventDefault();
     this.setState({
-      hours: +e.target.value
+      hours: +event.currentTarget.value
     });
   }
 
-  handleMinutesChange = (e) => {
-    e.preventDefault();
+  handleMinutesChange = (event: SyntheticInputEvent<HTMLInputElement> & { currentTarget: HTMLInputElement }): void => {
+    event.preventDefault();
     this.setState({
-      minutes: +e.target.value
+      minutes: +event.currentTarget.value
     });
   }
 
-  handleSecondsChange = (e) => {
-    e.preventDefault();
+  handleSecondsChange = (event: SyntheticInputEvent<HTMLInputElement> & { currentTarget: HTMLInputElement }): void => {
+    event.preventDefault();
     this.setState({
-      seconds: +e.target.value
+      seconds: +event.currentTarget.value
     });
   }
 
-  handleStopClick = (e) => {
-    e.preventDefault();
+  handleStopClick = (event: SyntheticEvent<HTMLButtonElement>): void => {
+    event.preventDefault();
     this.setState(prevState => {
       return {
         targetTime: ['', '', ''],
@@ -128,10 +136,11 @@ class Timer extends React.Component<Props, State> {
     })
   }
 
-  handleToggleClick = (e) => {
-    e.preventDefault();
+  handleToggleClick = (event: SyntheticEvent<HTMLButtonElement>): void => {
+    event.preventDefault();
     this.setState({
-      isRunning: false
+      isStarted: false,
+      showTimer: false
     }, () => setTimeout(this.props.history.replace('/countdown'), 1000) )
   }
 

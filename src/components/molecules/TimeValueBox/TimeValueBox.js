@@ -9,10 +9,11 @@ import Label from '../../atoms/Label/Label';
 let cx = classNames.bind(styles);
 
 type Props = {
-  value?: number,
+  value?: (number | string),
   unit: string,
   countdown?: boolean,
   timer?: boolean,
+  handleChange?: ?Function
 }
 
 const TimeValueBox = (

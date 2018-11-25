@@ -6,6 +6,10 @@ import Output from '../../components/organisms/Output/Output';
 import Modal from '../../components/organisms/Modal/Modal';
 import ModalDivider from '../../components/molecules/ModalDivider/ModalDivider';
 
+type Props = {
+  history: Object
+};
+
 type State = {
   targetDate: moment,
   days: number,
@@ -33,7 +37,7 @@ class Countdown extends React.Component<Props, State>  {
     });
   }
 
-  shouldComponentUpdate = (nextProps, nextState) => {
+  shouldComponentUpdate = (nextProps: Props, nextState: State) => {
     if (this.state.isRunning === false && nextState.isRunning === true) {
       return (
         nextState.seconds !== this.state.seconds
@@ -45,28 +49,31 @@ class Countdown extends React.Component<Props, State>  {
     return true;
   }
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    const target = new Date(this.state.targetDate);
-    this.setState(prevState => {
-      return { isRunning: !prevState.isRunning }
-    });
-    let getNewTimeUntil = setInterval(() => {
-      const time = target - new Date();
-      if (time > 0 && this.state.isRunning) {
-        this.getTimeUntil(time);
-      } else {
-        if (time < 0) {
-          this.setState({
-            showModal: true
-          })
+  handleSubmit = (event: SyntheticEvent<>): void => {
+    event.preventDefault();
+    if (this.state.targetDate !== null) {
+      const target = new Date(this.state.targetDate);
+      this.setState(prevState => {
+        return { isRunning: !prevState.isRunning }
+      });
+      let getNewTimeUntil = setInterval(() => {
+        const time = target - new Date();
+        if (time > 0 && this.state.isRunning) {
+          this.getTimeUntil(time);
+        } else {
+          if (time < 0) {
+            this.setState({
+              showModal: true
+            })
+          }
+          clearInterval(getNewTimeUntil);
         }
-        clearInterval(getNewTimeUntil);
-      }
-    }, 1000);
+      }, 1000);
+    }
+
   }
 
-  getTimeUntil = (time) => {
+  getTimeUntil = (time: number): void => {
     const days = Math.floor(time / (1000 * 60 * 60 * 24));
     const hours = Math.floor(time / (1000 * 60 * 60)) % 24;
     const minutes = Math.floor(time / (1000 * 60)) % 60;
@@ -74,7 +81,7 @@ class Countdown extends React.Component<Props, State>  {
     this.setState({ seconds, minutes, hours, days })
   }
 
-  handleChange = (targetDate) => {
+  handleChange = (targetDate: moment): void => {
     targetDate = targetDate.set({second:0, millisecond:0});
     this.setState({
       targetDate,
@@ -82,8 +89,8 @@ class Countdown extends React.Component<Props, State>  {
     });
   }
 
-  handleStopClick = (e) => {
-    e.preventDefault();
+  handleStopClick = (event: SyntheticEvent<HTMLButtonElement>): void => {
+    event.preventDefault();
     this.setState(prevState => {
       return {
         targetDate: moment(),
@@ -92,15 +99,15 @@ class Countdown extends React.Component<Props, State>  {
     })
   }
 
-  handleToggleClick = (e) => {
-    e.preventDefault();
+  handleToggleClick = (event: SyntheticEvent<HTMLButtonElement>): void => {
+    event.preventDefault();
     this.setState({
       isRunning: false
     }, () => setTimeout(this.props.history.replace('/timer'), 1000) )
   }
 
-  handleModalClick = (e) => {
-    e.preventDefault();
+  handleModalClick = (event: SyntheticEvent<HTMLElement>): void => {
+    event.preventDefault();
     this.setState({
       targetDate: moment(),
       showModal: false,
@@ -125,11 +132,15 @@ class Countdown extends React.Component<Props, State>  {
         <Output
           countdown
           {...this.state}
-          handleClick={this.handlePauseContinueClick} />
+          handleClick={this.handleStopClick} />
       );
     }
 
-    const endingInfo = `The countdown ended on ${(new Date(this.state.targetDate)).toLocaleString('sr-sr').slice(0,-3)} h. Select another date.`;
+    let endingInfo = '';
+    if (this.state.targetDate) {
+      endingInfo = `The countdown ended on ${(new Date(this.state.targetDate)).toLocaleString('sr-sr').slice(0,-3)} h. Select another date.`;
+    }
+
     const endingTitle = 'Countdown Info';
     let modal = null;
 

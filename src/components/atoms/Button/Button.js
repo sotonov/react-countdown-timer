@@ -10,6 +10,7 @@ type Props = {
   timer?: boolean,
   toggle?: boolean,
   hide?: boolean,
+  handleClick?: ?Function
 }
 
 let cx = classNames.bind(styles);

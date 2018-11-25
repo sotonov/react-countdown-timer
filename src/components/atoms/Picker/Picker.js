@@ -18,6 +18,7 @@ type Props = {
   showTimeSelectOnly?: boolean,
   timeIntervals?: number,
   timeCaption?: string,
+  handleChange: ?Function
 }
 
 let cx = classNames.bind(styles);

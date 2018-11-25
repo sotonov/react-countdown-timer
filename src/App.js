@@ -1,13 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 
-import Layout from './hoc/Layout/Layout';
 import Countdown from './containers/Countdown/Countdown';
 import Timer from './containers/Timer/Timer';
 import Home from './components/pages/Home/Home';
 import classes from './App.css';
 
-class App extends Component {
+class App extends React.Component<{}, {}> {
   render() {
     let routes = (
       <Switch>
@@ -19,9 +18,7 @@ class App extends Component {
     )
     return (
       <div className={classes.app}>
-        <Layout>
-          {routes}
-        </Layout>
+        {routes}
       </div>
     );
   }

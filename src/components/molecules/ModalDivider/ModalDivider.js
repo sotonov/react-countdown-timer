@@ -5,9 +5,10 @@ import Title from '../../atoms/Title/Title';
 
 type Props = {
   title: string,
-  text: string,
+  content: string,
   countdown?: boolean,
   timer?: boolean,
+  handleClick?: ?Function
 }
 
 const ModalDivider = (

@@ -1,11 +1,18 @@
 [ignore]
+.*/node_modules/.*
+.*/build/.*
+.*/config/.*
+.*/scripts/.*
+.*/src/App\.test\.js
 
 [include]
 
 [libs]
+flow-typed
 
 [lints]
 
 [options]
+all=true
 
 [strict]

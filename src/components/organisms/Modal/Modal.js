@@ -10,6 +10,8 @@ let cx = classNames.bind(styles);
 type Props = {
   show: boolean,
   children?: React.Node,
+  handleClick?: ?Function,
+  handleModalClick?: ?Function
 }
 
 const Modal = (

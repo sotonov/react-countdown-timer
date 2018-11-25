@@ -6,7 +6,8 @@ import styles from './Backdrop.css';
 let cx = classNames.bind(styles);
 
 type Props = {
-  show: boolean
+  show: boolean,
+  handleClick?: ?Function
 }
 
 const backdrop = (

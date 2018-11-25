@@ -9,10 +9,14 @@ let cx = classNames.bind(styles);
 
 type Props = {
   showTimer?: boolean,
+  handleHoursChange?: ?Function,
+  handleMinutesChange?: ?Function,
+  handleSecondsChange?: ?Function,
+  handleClick?: ?Function
 }
 
 const TimerInput = (
-  { targetTime, handleHoursChange, handleMinutesChange, handleSecondsChange, handleClick }: Props) => {
+  { handleHoursChange, handleMinutesChange, handleSecondsChange, handleClick }: Props) => {
 
   const buttonContent = "Start";
 

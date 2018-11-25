@@ -9,6 +9,7 @@ let cx = classNames.bind(styles);
 
 type Props = {
   selected: moment,
+  handleChange?: ?Function
 }
 
 const TimePicker = (

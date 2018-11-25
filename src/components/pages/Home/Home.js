@@ -18,9 +18,9 @@ class Home extends React.Component<Props, State> {
     app: ''
   }
 
-  handleClick = (e) => {
+  handleClick = (event: SyntheticEvent<HTMLButtonElement> & { currentTarget: HTMLButtonElement }) => {
     this.setState({
-      app: e.target.innerText
+      app: event.currentTarget.innerText
     })
   }
 
