@@ -49,7 +49,7 @@ class Countdown extends React.Component<Props, State>  {
     return true;
   }
 
-  handleSubmit = (event: SyntheticEvent<>): void => {
+  handleSubmit = (event: SyntheticEvent<HTMLFormElement>): void => {
     event.preventDefault();
     if (this.state.targetDate !== null) {
       const target = new Date(this.state.targetDate);
@@ -82,6 +82,8 @@ class Countdown extends React.Component<Props, State>  {
   }
 
   handleChange = (targetDate: moment): void => {
+    console.log('targetDate', targetDate);
+    console.log('this', this);
     targetDate = targetDate.set({second:0, millisecond:0});
     this.setState({
       targetDate,

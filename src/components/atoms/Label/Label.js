@@ -11,7 +11,7 @@ type Props = {
   lower?: boolean,
   counting?: boolean,
   unit?: boolean,
-  handleClick?: ?Function
+  handleClick?: ?(event: SyntheticMouseEvent<HTMLElement>) => void
 }
 
 let cx = classNames.bind(styles);

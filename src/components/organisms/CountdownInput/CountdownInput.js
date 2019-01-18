@@ -11,9 +11,9 @@ let cx = classNames.bind(styles);
 
 type Props = {
   targetDate: moment,
-  handleDateChange?: ?Function,
-  handleTimeChange?: ?Function,
-  handleSubmit?: ?Function
+  handleDateChange?: Function,
+  handleTimeChange?: Function,
+  handleSubmit?: ?(event: SyntheticEvent<HTMLFormElement>) => void
 }
 
 const CountdownInput = (

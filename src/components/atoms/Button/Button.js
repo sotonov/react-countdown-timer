@@ -10,7 +10,7 @@ type Props = {
   timer?: boolean,
   toggle?: boolean,
   hide?: boolean,
-  handleClick?: ?Function
+  handleClick?: ?(event: SyntheticMouseEvent<HTMLButtonElement>) => void
 }
 
 let cx = classNames.bind(styles);

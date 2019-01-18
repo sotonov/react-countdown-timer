@@ -9,7 +9,7 @@ let cx = classNames.bind(styles);
 
 type Props = {
   selected: Date,
-  handleChange?: ?Function
+  handleChange?: Function
 }
 
 const DatePicker = (

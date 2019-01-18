@@ -6,12 +6,12 @@ import styles from './Input.css';
 type Props = {
   unit: string,
   value?: string | number,
-  handleChange: ?Function
+  handleChange: ?(event: SyntheticInputEvent<HTMLInputElement>) => void
 }
 
 let cx = classNames.bind(styles);
 
-const ValueBox = (
+const Input = (
   { unit, value, handleChange }: Props) => {
 
   let className = cx({
@@ -46,4 +46,4 @@ const ValueBox = (
   );
 };
 
-export default ValueBox;
+export default Input;

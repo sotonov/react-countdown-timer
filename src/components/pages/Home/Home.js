@@ -4,21 +4,19 @@ import { Redirect } from 'react-router-dom';
 import Title from '../../atoms/Title/Title';
 import Button from '../../atoms/Button/Button';
 import Aux from '../../../hoc/Aux/Aux';
+import * as cst from '../../../constants/constants';
 
-type Props = {
-
-};
 
 type State = {
   app: string
 };
 
-class Home extends React.Component<Props, State> {
+class Home extends React.Component<{}, State> {
   state = {
     app: ''
   }
 
-  handleClick = (event: SyntheticEvent<HTMLButtonElement> & { currentTarget: HTMLButtonElement }) => {
+  handleClick = (event: SyntheticMouseEvent<HTMLButtonElement>) => {
     this.setState({
       app: event.currentTarget.innerText
     })
@@ -30,7 +28,7 @@ class Home extends React.Component<Props, State> {
       redirectToApp = <Redirect to={`/${this.state.app}`} />;
     }
 
-    let title = 'Select the App';
+    let title = cst.HOME_TITLE;
 
     return (
       <Aux>
@@ -40,11 +38,11 @@ class Home extends React.Component<Props, State> {
           content={title} />
         <Button
           home
-          content='Countdown'
+          content={cst.COUNTDOWN}
           handleClick={this.handleClick} />
         <Button
           home
-          content='Timer'
+          content={cst.TIMER}
           handleClick={this.handleClick} />
       </Aux>
     );
